@@ -24,7 +24,26 @@ function addToCart(cart, product, quantity) {
   return [...cart, { ...product, quantity }];
 }
 
-function changeQuantity() { return notImplemented(); }
+function changeQuantity(cart, id, quantity) {
+  if (quantity <= 0) {
+    throw new RangeError();
+  }
+  const productInCart = cart.find(el => el.id === id);
+
+  if (!productInCart) {
+    return [...cart];
+  }
+
+  if (productInCart.stock < quantity) {
+    throw new RangeError('Больше добавить нельзя');
+  }
+
+  return cart.map((el) =>
+    el.id === id
+      ? { ...el, quantity }
+      : el
+  );
+}
 
 function removeFromCart(cart, id) {
   return cart.filter((el) => el.id !== id);
