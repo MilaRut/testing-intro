@@ -49,7 +49,11 @@ function removeFromCart(cart, id) {
   return cart.filter((el) => el.id !== id);
 }
 
-function calculateCartSubtotal() { return notImplemented(); }
+function calculateCartSubtotal(cart) {
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  return subtotal;
+}
+
 function calculateOrderTotal() { return notImplemented(); }
 
 const cartApi = { addToCart, changeQuantity, removeFromCart, calculateCartSubtotal, calculateOrderTotal };
