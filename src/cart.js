@@ -4,7 +4,7 @@ function notImplemented() {
 
 function addToCart(cart, product, quantity) {
   if (quantity <= 0) {
-    throw new RangeError('Недопустимое количество');    
+    throw new RangeError('Недопустимое количество');
   }
 
   const productInCart = cart.find(el => el.id === product.id);
@@ -25,7 +25,11 @@ function addToCart(cart, product, quantity) {
 }
 
 function changeQuantity() { return notImplemented(); }
-function removeFromCart() { return notImplemented(); }
+
+function removeFromCart(cart, id) {
+  return cart.filter((el) => el.id !== id);
+}
+
 function calculateCartSubtotal() { return notImplemented(); }
 function calculateOrderTotal() { return notImplemented(); }
 
